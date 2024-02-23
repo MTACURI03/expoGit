@@ -1,8 +1,9 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
 
-public class Ingreso extends JFrame{
+public class Ingreso extends JFrame {
     private JPanel ingresoPanel;
     private JButton divisionButton;
     private JTextField num1Field;
@@ -13,20 +14,28 @@ public class Ingreso extends JFrame{
 
     Double numero1 = 0.0;
     Double numero2 = 0.0;
-    public Ingreso(){
+
+    public Ingreso() {
         super("Ingreso de numeros");
         setContentPane(ingresoPanel);
         sumaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 obtenerDatos();
-                suma(numero1,numero2);
+                suma(numero1, numero2);
 
             }
         });
-
+        restaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                obtenerDatos();
+                resta(numero1,numero2);
+            }
+        });
     }
-    public void obtenerDatos(){
+
+    public void obtenerDatos() {
         String num1 = num1Field.getText();
         String num2 = num2Field.getText();
 
@@ -35,13 +44,17 @@ public class Ingreso extends JFrame{
 
     }
 
-    public void seteo(){
+    public void seteo() {
         num1Field.setText("");
         num2Field.setText("");
     }
 
-    public void suma(double num1, double num2){
-        JOptionPane.showMessageDialog(null, "Su resultado es: "+(num1+num2));
+    public void suma(double num1, double num2) {
+        JOptionPane.showMessageDialog(null, "Su resultado es: " + (num1 + num2));
+        seteo();
+    }
+    public void resta(double num1, double num2) {
+        JOptionPane.showMessageDialog(null, "Su resultado es: " + (num1 - num2));
         seteo();
     }
 
